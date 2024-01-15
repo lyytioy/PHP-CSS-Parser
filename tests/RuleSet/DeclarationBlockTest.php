@@ -20,7 +20,7 @@ class DeclarationBlockTest extends TestCase
      *
      * @test
      */
-    public function expandBorderShorthand($sCss, $sExpected)
+    public static function expandBorderShorthand($sCss, $sExpected)
     {
         $oParser = new Parser($sCss);
         $oDoc = $oParser->parse();
@@ -33,7 +33,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function expandBorderShorthandProvider()
+    public static function expandBorderShorthandProvider()
     {
         return [
             ['body{ border: 2px solid #000 }', 'body {border-width: 2px;border-style: solid;border-color: #000;}'],
@@ -53,7 +53,7 @@ class DeclarationBlockTest extends TestCase
      *
      * @test
      */
-    public function expandFontShorthand($sCss, $sExpected)
+    public static function expandFontShorthand($sCss, $sExpected)
     {
         $oParser = new Parser($sCss);
         $oDoc = $oParser->parse();
@@ -66,7 +66,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function expandFontShorthandProvider()
+    public static function expandFontShorthandProvider()
     {
         return [
             [
@@ -109,7 +109,7 @@ class DeclarationBlockTest extends TestCase
      *
      * @test
      */
-    public function expandBackgroundShorthand($sCss, $sExpected)
+    public static function expandBackgroundShorthand($sCss, $sExpected)
     {
         $oParser = new Parser($sCss);
         $oDoc = $oParser->parse();
@@ -122,7 +122,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function expandBackgroundShorthandProvider()
+    public static function expandBackgroundShorthandProvider()
     {
         return [
             ['body {border: 1px;}', 'body {border: 1px;}'],
@@ -162,7 +162,7 @@ class DeclarationBlockTest extends TestCase
      *
      * @test
      */
-    public function expandDimensionsShorthand($sCss, $sExpected)
+    public static function expandDimensionsShorthand($sCss, $sExpected)
     {
         $oParser = new Parser($sCss);
         $oDoc = $oParser->parse();
@@ -175,7 +175,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function expandDimensionsShorthandProvider()
+    public static function expandDimensionsShorthandProvider()
     {
         return [
             ['body {border: 1px;}', 'body {border: 1px;}'],
@@ -200,7 +200,7 @@ class DeclarationBlockTest extends TestCase
      *
      * @test
      */
-    public function createBorderShorthand($sCss, $sExpected)
+    public static function createBorderShorthand($sCss, $sExpected)
     {
         $oParser = new Parser($sCss);
         $oDoc = $oParser->parse();
@@ -213,7 +213,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function createBorderShorthandProvider()
+    public static function createBorderShorthandProvider()
     {
         return [
             ['body {border-width: 2px;border-style: solid;border-color: #000;}', 'body {border: 2px solid #000;}'],
@@ -231,7 +231,7 @@ class DeclarationBlockTest extends TestCase
      *
      * @test
      */
-    public function createFontShorthand($sCss, $sExpected)
+    public static function createFontShorthand($sCss, $sExpected)
     {
         $oParser = new Parser($sCss);
         $oDoc = $oParser->parse();
@@ -244,7 +244,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function createFontShorthandProvider()
+    public static function createFontShorthandProvider()
     {
         return [
             ['body {font-size: 12px; font-family: serif}', 'body {font: 12px serif;}'],
@@ -274,7 +274,7 @@ class DeclarationBlockTest extends TestCase
      *
      * @test
      */
-    public function createDimensionsShorthand($sCss, $sExpected)
+    public static function createDimensionsShorthand($sCss, $sExpected)
     {
         $oParser = new Parser($sCss);
         $oDoc = $oParser->parse();
@@ -287,7 +287,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function createDimensionsShorthandProvider()
+    public static function createDimensionsShorthandProvider()
     {
         return [
             ['body {border: 1px;}', 'body {border: 1px;}'],
@@ -325,7 +325,7 @@ class DeclarationBlockTest extends TestCase
     /**
      * @return array<int, array<int, string>>
      */
-    public function createBackgroundShorthandProvider()
+    public static function createBackgroundShorthandProvider()
     {
         return [
             ['body {border: 1px;}', 'body {border: 1px;}'],
