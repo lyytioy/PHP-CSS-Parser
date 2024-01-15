@@ -5,3 +5,6 @@
 /phpstan.neon
 /vendor/
 !/.phive/phars.xml
+.idea
+.phpunit.result.cache
+.phpunit.cache
