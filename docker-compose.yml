@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  php82:
+    build: .
+    hostname: php82
+    volumes:
+      - ".:/php-css-parser"
+    command: "sleep infinity"
