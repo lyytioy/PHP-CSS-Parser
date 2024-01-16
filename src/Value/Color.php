@@ -69,14 +69,21 @@ class Color extends CSSFunction
             $oParserState->consume('(');
 
             $bContainsVar = false;
-            $iLength = $oParserState->strlen($sColorMode);
+            if (str_starts_with($sColorMode, 'rgb')) {
+                $sColorTarget = 'rgba';
+            } elseif (str_starts_with($sColorMode, 'hsl')) {
+                $sColorTarget = 'hsla';
+            } else {
+                $sColorTarget = $sColorMode;
+            }
+            $iLength = $oParserState->strlen($sColorTarget);
             for ($i = 0; $i < $iLength; ++$i) {
                 $oParserState->consumeWhiteSpace();
                 if ($oParserState->comes('var')) {
-                    $aColor[$sColorMode[$i]] = CSSFunction::parseIdentifierOrFunction($oParserState);
+                    $aColor[$sColorTarget[$i]] = CSSFunction::parseIdentifierOrFunction($oParserState);
                     $bContainsVar = true;
                 } else {
-                    $aColor[$sColorMode[$i]] = Size::parse($oParserState, true);
+                    $aColor[$sColorTarget[$i]] = Size::parse($oParserState, true);
                 }
 
                 if ($bContainsVar && $oParserState->comes(')')) {
@@ -86,7 +93,14 @@ class Color extends CSSFunction
 
                 $oParserState->consumeWhiteSpace();
                 if ($i < ($iLength - 1)) {
-                    $oParserState->consume(',');
+                    if ($oParserState->comes(',')) {
+                        $oParserState->consume(',');
+                    } elseif ($oParserState->comes('/')) {
+                        $oParserState->consume('/'); // rgb( 255 255 255 / 0.5 )
+                    } elseif ($oParserState->comes(')')) {
+                        // No alpha channel information
+                        break;
+                    }
                 }
             }
             $oParserState->consume(')');
